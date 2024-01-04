@@ -98,7 +98,7 @@ button {
 	font-size: 18px;
 }
 
-.form-button {
+#submitButton {
 	border-radius: 35px;
 	background-color: #592380;
 	box-shadow: 0px 8px 30px lightblue;
@@ -157,13 +157,4 @@ header{
 	height: 15px;
 	background-color: white;
 	margin-top: 5px;
-}
-
-.d-none {
-	display: none;
-}
-
-.landing {
-	height: 100%;
-	width: 100%;
 }
