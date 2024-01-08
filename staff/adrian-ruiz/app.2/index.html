@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./styles.css">
+	<script src="./data.js" defer></script>
+	<script src="./main.js" defer></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<section class="landing" id="landing">
+<section class="background">
+
+</section>
+<section class="headerContainer">
+	<header>
+		<div class="header-logo">
+			<img src="./assets/sample-logo.png" alt="Company Logo" id="companyLogo">
+		</div>
+	</header>
+</section>
+<section class="formContainer" id="login-form-section">
+	<div class="form">
+		<form id="login-form">
+			<label for="email">E-mail</label>
+			<input type="email" name="email">
+			<label for="password">Password</label>
+			<input type="password" name="password">
+			<button type="submit" class="form-button" id="submit-login">
+				<p class="buttonText">Login</p>
+			</button>
+		</form>
+	</div>
+	<div class="form-link">
+		<a class="form-anchor" id="register-link">Register</a>
+	</div>
+</section>
+<section class="formContainer d-none" id="register-form-section">
+	<div class="form">
+		<form id="register-form">
+			<label for="firstname">Firstname</label>
+			<input type="text" name="firstname">
+			<label for="email">E-mail</label>
+			<input type="email" name="email">
+			<label for="password">Password</label>
+			<input type="password" name="password">
+			<button type="submit" class="form-button" id="submit-register">
+				<p class="buttonText">Register</p>
+			</button>
+		</form>
+	</div>
+	<div class="form-link">
+		<a class="form-anchor" id="login-link">Login</a>
+	</div>
+</section>
+	</section>
+	<section class="home d-none" id="home">
+		<header class="home-header">
+			<p id="hello-user">Hello, Lorem</p>
+			<div class="menu-container">
+				<div class="menu-icon"></div>
+				<div class="menu-icon"></div>
+				<div class="menu-icon"></div>
+			</div>
+		
+		</header>
+	</section>
+</body>
+
+</html>
