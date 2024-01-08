@@ -1,65 +1,7 @@
+
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,15}$/
 
-const loginFunction = (email, password) => {
-	// COMPROBACIONES
-	if (typeof email !== 'string') throw new TypeError('Email is not a string.')
-	if (email.trim().length < 5) throw new Error('Email length is not valid.')
-	if (!emailRegex.test(email)) throw new Error('Email is not valid.')
-	if (typeof password !== 'string') throw new TypeError('Password is not a string.')
-	if (password.trim().length === 0) throw new Error('Password is empty.')
-	if (password.length < 9 || password.length > 15) throw new Error('Password length is not valid.')
-
-	// LÓGICA DE LA FUNCIÓN
-	const foundUser = users.find(user => {
-		return user.email === email
-	})
-
-	if (!foundUser) {
-		console.log('Ha habido un error en la autenticación')
-		alert('Ha habido un error en la autenticación')
-		return false
-	}
-
-	if (foundUser.password !== password) {
-		alert('Ha habido un error en la autenticación')
-		console.log('Ha habido un error en la autenticación')
-
-		return false
-	}
-
-	return foundUser
-}
-
-const registerFunction = (name, email, password) => {
-	// COMPROBACIONES
-	if (typeof name !== 'string') throw new TypeError('Name is not a string.')
-	if (name.length < 2) throw new Error('Name length is not valid')
-	if (name.trim() === 0) throw new Error('Name is empty')
-	if (typeof email !== 'string') throw new TypeError('Email is not a string.')
-	if (email.trim().length < 5) throw new Error('Email length is not valid.')
-	if (!emailRegex.test(email)) throw new Error('Email is not valid.')
-	if (typeof password !== 'string') throw new TypeError('Password is not a string.')
-	if (password.trim().length === 0) throw new Error('Password is empty.')
-	if (password.length < 9 || password.length > 15) throw new Error('Password length is not valid.')
-	if (!passRegex.test(password)) throw new Error('Password does not match regex: Must contain 1 uppercase letter, 1 lowercase letter, 1 number, 1 symbol and length between 9 and 15 characters')
-
-	const emailAlreadyOnUse = users.find(user => {
-		return user.email === email
-	})
-
-	if (emailAlreadyOnUse) throw new Error('Email is already registered.')
-
-	const newUser = {
-		name: name,
-		email: email,
-		password: password
-	}
-
-	users.push(newUser)
-
-	return newUser
-}
 
 const loginForm = document.getElementById('login-form')
 const registerForm = document.getElementById('register-form')
@@ -74,6 +16,10 @@ const loginLink = document.getElementById('login-link')
 
 const helloUserP = document.getElementById('hello-user')
 
+const notesSection = document.getElementById('notes-section')
+
+let userLogged
+
 // SUBMIT LOGIN FORM
 loginForm.addEventListener('submit', (event) => {
 	// DE ESTA MANERA, EVITAMOS EL PARPADEO (REFRESCO) DE LA PÁGINA
@@ -85,12 +31,16 @@ loginForm.addEventListener('submit', (event) => {
 		const user = loginFunction(email, password)
 
 		if (user) {
-			console.log('EL USUARIO SE HA LOGEADO')
+			userLogged = user
 			homeSection.classList.remove('d-none')
 			landingSection.classList.add('d-none')
 
 			/* helloUserP.textContent = "Hello" + " " + user.name */
 			helloUserP.textContent = `Hello, ${user.name}`
+
+			const notesFiltered = retriveNotesFunction(user.id)
+
+			printNotesFunction(notesFiltered, notesSection)
 		}
 	} catch (e) {
 		alert(e.message)
@@ -109,9 +59,14 @@ registerForm.addEventListener('submit', (e) => {
 		const newUser = registerFunction(name, email, password)
 
 		if (newUser) {
+			userLogged = newUser
 			homeSection.classList.remove('d-none')
 			landingSection.classList.add('d-none')
 			helloUserP.textContent = `Hello, ${newUser.name}`
+
+			const notesFiltered = retriveNotesFunction(user.userId)
+
+			printNotesFunction(notesFiltered, notesSection)
 		}
 	} catch (e) {
 		alert(e.message)
@@ -134,3 +89,6 @@ loginLink.addEventListener('click', (e) => {
 	loginFormSection.classList.remove('d-none')
 	registerFormSection.classList.add('d-none')
 })
+
+
+

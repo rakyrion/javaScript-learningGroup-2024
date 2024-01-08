@@ -152,11 +152,24 @@ header{
 	margin-right: 5%;
 }
 
-.menu-icon {
+.menu-icon1, .menu-icon2, .menu-icon3 {
 	width: 35px;
-	height: 15px;
+	height: 12px;
 	background-color: white;
 	margin-top: 5px;
+	transition: 0.4s;
+}
+
+.change .menu-icon1 {
+	transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change .menu-icon2 {
+	opacity: 0;
+}
+
+.change .menu-icon3 {
+	transform: translate(0, -11px) rotate(45deg);
 }
 
 .d-none {
@@ -166,4 +179,58 @@ header{
 .landing {
 	height: 100%;
 	width: 100%;
+}
+
+#hello-user{
+	color: white;
+	text-align: center;
+	font-size: 22px;
+}
+
+.home{
+	width: 100%;
+	height: 100%;
+}
+
+.home-title-container{
+	width: 90%;
+}
+
+.notes-section {
+	height: 83%;
+	width: 100%;
+	background-color: #e9e1e1;
+	overflow: scroll;
+}
+
+.note{
+	width: 100%;
+	padding: 0% 10% 0% 10%;
+}
+
+.note-text-container{
+	width: 100%;
+	margin: 5% 0% 5% 0%;
+	background-color: rgb(244, 244, 142);
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+	padding: 3%;
+}
+
+.note-text{
+	padding: 3%
+}
+
+.home-footer{
+	height: 7%;
+	width: 100%;
+	background-color: rgb(91, 91, 91);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer-icon{
+	text-align: center;
+	font-size: 28px;
 }
